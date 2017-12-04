@@ -1,0 +1,20 @@
+{
+  "rules": {
+    "public": {
+      "weights": {
+        ".read": true,
+        ".write": true
+      }
+    },
+    "user": {
+      "$uid": {
+        "weights": {
+          ".read": "auth != null && $uid === auth.uid",
+          ".write": "auth != null && $uid === auth.uid"
+        }
+      }
+    },
+    ".read": false,
+    ".write": false
+  }
+}

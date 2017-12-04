@@ -1,0 +1,73 @@
+{
+   "count" : {
+      "value" : 2
+   },
+   "public" : {
+      "count" : {
+         "value" : 6
+      }
+   },
+   "weights" : {
+      "-KtC6G3KGD_19SKsPDDE" : {
+         "weight" : "83.3",
+         "date" : "2017-09-04"
+      },
+      "-Kxq_HdPgVTHZLd5t6zf" : {
+         "date" : "2017-11-01",
+         "weight" : "84.7"
+      },
+      "-KrXAyaR2z8Dz_t4GTy0" : {
+         "weight" : "82.3",
+         "date" : "2017-08-14"
+      },
+      "-KrP69A0LpMPPnbhV04C" : {
+         "date" : "2017-08-13",
+         "weight" : "81.7"
+      },
+      "-KryjoeZa5wzpOYSnnrz" : {
+         "date" : "2017-08-20",
+         "weight" : "81.7"
+      },
+      "-Kx6rxnoTUCFBkzewEya" : {
+         "weight" : "84.6",
+         "date" : "2017-10-23"
+      },
+      "-Ks2tTBC02LchJglhdNM" : {
+         "weight" : "82.4",
+         "date" : "2017-08-21"
+      },
+      "-L-GdHhSfhGnYe994hF8" : {
+         "weight" : "84.3",
+         "date" : "2017-12-01"
+      },
+      "-KvLjomOHMlGTM_0DMPI" : {
+         "weight" : "83.8",
+         "date" : "2017-10-01"
+      },
+      "-KwxLhGnSa-zBvis4YrU" : {
+         "weight" : "85.7",
+         "date" : "2017-10-21"
+      },
+      "-Kr_XsX4gXFQCs3TrowU" : {
+         "weight" : "82.7",
+         "date" : "2017-08-15"
+      },
+      "-KyKUfNCTaXxqdTY4SWK" : {
+         "date" : "2017-11-07",
+         "weight" : "84.2"
+      },
+      "-KrjLjd5zQec8chyDlJb" : {
+         "weight" : "82.0",
+         "date" : "2017-08-17"
+      },
+      "-KwTgRligpNdhJWd1qGq" : {
+         "weight" : "85",
+         "date" : "2017-10-15"
+      }
+   },
+   "WLNLcXL6RcUtu9g1xMu5gnbwHaA3" : {
+      "count" : {
+         "value" : 6
+      }
+   }
+}
