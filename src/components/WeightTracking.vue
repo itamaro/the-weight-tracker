@@ -38,49 +38,68 @@
         </b-col>
       </b-form-row>
 
-      <!-- Edit existing weights form -->
-      <h2>Weights</h2>
-      <b-form-row v-if="weights"
-                  v-for="item in sorted_weights"
-                  :key="item['.key']">
-        <b-col sm="3" lg="2" xl="1">
-          <b-input plaintext
-                   :value="`On ${item.date}:`" />
+      <b-row v-if="weights.length > 0">
+        <b-col xs="3" lg="6" xl="8">
+          <Chart :chartData="chartData" :options="chartOptions" />
         </b-col>
-        <b-col sm="3" lg="2" xl="1">
-          <label :for="`weight${item['.key']}`" class="sr-only">
-            Weight on {{ item.date }}
-          </label>
-          <b-input-group right="kg" class="mb-2 mr-sm-2 mb-sm-0">
-            <b-input :id="`weight${item['.key']}`"
-                     type="number"
-                     step="0.1"
-                     required
-                     @change="updateWeight(item['.key'])"
-                     :value="item.weight" />
-          </b-input-group>
+        <b-col cols="1">
         </b-col>
-        <b-col sm="1" lg="1">
-          <b-button @click="removeWeight(item['.key'])"
-                    variant="outline-secondary"
-                    class="delete-button"
-                    size="sm">&#10006;</b-button>
-        </b-col>
-      </b-form-row>
-      <b-row v-if="weights.length == 0 && user && user.displayName">
-        <b-col cols="12">
-          No weights data for {{ user.displayName }}
+        <b-col xs="8" lg="6" xl="3">
+          <!-- Edit existing weights form -->
+          <b-container fluid>
+            <b-form-row v-for="item in sorted_weights"
+                        :key="item['.key']">
+              <b-col>
+                <b-input plaintext
+                         :value="`On ${item.date}:`" />
+              </b-col>
+              <b-col>
+                <label :for="`weight${item['.key']}`" class="sr-only">
+                  Weight on {{ item.date }}
+                </label>
+                <b-input-group right="kg" class="mb-2 mr-sm-2 mb-sm-0">
+                  <b-input :id="`weight${item['.key']}`"
+                           type="number"
+                           step="0.1"
+                           required
+                           @change="updateWeight(item['.key'])"
+                           :value="item.weight" />
+                </b-input-group>
+              </b-col>
+              <b-col cols="1">
+                <b-button @click="removeWeight(item['.key'])"
+                          variant="outline-secondary"
+                          class="delete-button"
+                          size="sm">&#10006;</b-button>
+              </b-col>
+            </b-form-row>
+          </b-container>
         </b-col>
       </b-row>
+      <b-row v-if="weights.length == 0 && user && user.displayName">
+        <b-col>
+          <p class="no-data-msg">No weights data for {{ user.displayName }}</p>
+        </b-col>
+      </b-row>
+      <b-row v-if="weights.length == 0 && (!user | !user.displayName)">
+        <b-col>
+          <p class="no-data-msg">No weights data for anonymous user</p>
+        </b-col>
+      </b-row>
+
     </b-container>
   </div>
 </template>
 
 <script>
 import Vuex from 'vuex'
+import Chart from '@/components/Chart'
 
 export default {
   name: 'WeightTracking',
+  components: {
+    Chart
+  },
   data () {
     return {
       show: false,
@@ -97,6 +116,47 @@ export default {
         let keyB = new Date(b.date)
         return (keyA < keyB ? -1 : (keyA > keyB ? 1 : 0))
       })
+    },
+    chartOptions () {
+      return {
+        scales: {
+          xAxes: [{
+            type: 'time',
+            unit: 'day',
+            unitStepSize: 1,
+            time: {
+              unit: 'day'
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              beginAtZero: false
+            }
+          }]
+        }
+      }
+    },
+    chartData () {
+      let datesArray = []
+      let weightsArray = []
+      let weights = this.sorted_weights
+      for (let key in weights) {
+        datesArray.push(new Date(weights[key].date))
+        weightsArray.push(weights[key].weight)
+      }
+      return {
+        labels: datesArray,
+        datasets: [
+          {
+            label: 'Weights',
+            backgroundColor: '#f87979',
+            data: weightsArray,
+            fill: false,
+            borderWidth: 3,
+            borderColor: '#f87979'
+          }
+        ]
+      }
     },
     ...Vuex.mapGetters(['weights', 'user'])
   },
@@ -143,5 +203,8 @@ export default {
   border-radius: 70%;
   margin-top: 2px;
   border: hidden;
+}
+.no-data-msg {
+  margin: 30px;
 }
 </style>

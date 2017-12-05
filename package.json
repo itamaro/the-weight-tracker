@@ -16,9 +16,11 @@
   "dependencies": {
     "bootstrap": "4.0.0-beta.2",
     "bootstrap-vue": "^1.2.0",
+    "chart.js": "^2.7.1",
     "firebase": "^4.6.2",
     "firebaseui": "^2.5.1",
     "vue": "^2.5.2",
+    "vue-chartjs": "^3.0.2",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
     "vuexfire": "^2.3.0"
