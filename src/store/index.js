@@ -24,6 +24,12 @@ const mutations = {
   save_new_weight (state, newWeighing) {
     store.weightsRef.push(newWeighing)
   },
+  remove_weight (state, key) {
+    store.weightsRef.child(key).remove()
+  },
+  update_weight (state, {key, newWeight}) {
+    store.weightsRef.child(key).child('weight').set(newWeight)
+  },
   set_user (state, user) {
     state.user = user
   },
