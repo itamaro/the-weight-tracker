@@ -81,7 +81,7 @@
           <p class="no-data-msg">No weights data for {{ user.displayName }}</p>
         </b-col>
       </b-row>
-      <b-row v-if="weights.length == 0 && (!user | !user.displayName)">
+      <b-row v-if="weights.length == 0 && (!user || !user.displayName)">
         <b-col>
           <p class="no-data-msg">No weights data for anonymous user</p>
         </b-col>
